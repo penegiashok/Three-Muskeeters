@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuizModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="QuizModelStoreContainer">
+          <EntitySet Name="Answer" EntityType="QuizModel.Store.Answer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AnswerImages" EntityType="QuizModel.Store.AnswerImages" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Question" EntityType="QuizModel.Store.Question" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionAnswer" EntityType="QuizModel.Store.QuestionAnswer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionImage" EntityType="QuizModel.Store.QuestionImage" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuestionOption" EntityType="QuizModel.Store.QuestionOption" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="QuizCategory" EntityType="QuizModel.Store.QuizCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserQuiz" EntityType="QuizModel.Store.UserQuiz" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_AnswerImages_Answer" Association="QuizModel.Store.FK_AnswerImages_Answer">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="AnswerImages" EntitySet="AnswerImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswer_Answer" Association="QuizModel.Store.FK_QuestionAnswer_Answer">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="QuestionAnswer" EntitySet="QuestionAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswer_Question" Association="QuizModel.Store.FK_QuestionAnswer_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionAnswer" EntitySet="QuestionAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswer_QuizCategory" Association="QuizModel.Store.FK_QuestionAnswer_QuizCategory">
+            <End Role="QuizCategory" EntitySet="QuizCategory" />
+            <End Role="QuestionAnswer" EntitySet="QuestionAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionImage_Question" Association="QuizModel.Store.FK_QuestionImage_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionImage" EntitySet="QuestionImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOption_Answer" Association="QuizModel.Store.FK_QuestionOption_Answer">
+            <End Role="Answer" EntitySet="Answer" />
+            <End Role="QuestionOption" EntitySet="QuestionOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOption_Question" Association="QuizModel.Store.FK_QuestionOption_Question">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionOption" EntitySet="QuestionOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_QuizCategory" Association="QuizModel.Store.FK_User_QuizCategory">
+            <End Role="QuizCategory" EntitySet="QuizCategory" />
+            <End Role="UserQuiz" EntitySet="UserQuiz" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerDesc" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnswerImages">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerID" Type="int" Nullable="false" />
+          <Property Name="ImageUrl" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionDesc" Type="varchar(max)" Nullable="false" />
+          <Property Name="QuestionOrder" Type="int" Nullable="false" />
+          <Property Name="AnswerExplanation" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="QuestionAnswer">
+          <Key>
+            <PropertyRef Name="QAID" />
+          </Key>
+          <Property Name="QAID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="AnswerID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="ImageURL" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionOption">
+          <Key>
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="OptionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="choiceID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuizCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Description" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="UserQuiz">
+          <Key>
+            <PropertyRef Name="QuizUserID" />
+          </Key>
+          <Property Name="QuizUserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="datetimecompleted" Type="smalldatetime" />
+          <Property Name="Score" Type="int" />
+          <Property Name="QuizCategoryID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AnswerImages_Answer">
+          <End Role="Answer" Type="QuizModel.Store.Answer" Multiplicity="1" />
+          <End Role="AnswerImages" Type="QuizModel.Store.AnswerImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerID" />
+            </Principal>
+            <Dependent Role="AnswerImages">
+              <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswer_Answer">
+          <End Role="Answer" Type="QuizModel.Store.Answer" Multiplicity="1" />
+          <End Role="QuestionAnswer" Type="QuizModel.Store.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerID" />
+            </Principal>
+            <Dependent Role="QuestionAnswer">
+              <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswer_Question">
+          <End Role="Question" Type="QuizModel.Store.Question" Multiplicity="1" />
+          <End Role="QuestionAnswer" Type="QuizModel.Store.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionAnswer">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswer_QuizCategory">
+          <End Role="QuizCategory" Type="QuizModel.Store.QuizCategory" Multiplicity="1" />
+          <End Role="QuestionAnswer" Type="QuizModel.Store.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="QuestionAnswer">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionImage_Question">
+          <End Role="Question" Type="QuizModel.Store.Question" Multiplicity="1" />
+          <End Role="QuestionImage" Type="QuizModel.Store.QuestionImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionImage">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOption_Answer">
+          <End Role="Answer" Type="QuizModel.Store.Answer" Multiplicity="1" />
+          <End Role="QuestionOption" Type="QuizModel.Store.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerID" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="choiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOption_Question">
+          <End Role="Question" Type="QuizModel.Store.Question" Multiplicity="1" />
+          <End Role="QuestionOption" Type="QuizModel.Store.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_QuizCategory">
+          <End Role="QuizCategory" Type="QuizModel.Store.QuizCategory" Multiplicity="1" />
+          <End Role="UserQuiz" Type="QuizModel.Store.UserQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="UserQuiz">
+              <PropertyRef Name="QuizCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuizModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="QuizEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Answers" EntityType="QuizModel.Answer" />
+          <EntitySet Name="AnswerImages" EntityType="QuizModel.AnswerImage" />
+          <EntitySet Name="Questions" EntityType="QuizModel.Question" />
+          <EntitySet Name="QuestionAnswers" EntityType="QuizModel.QuestionAnswer" />
+          <EntitySet Name="QuestionImages" EntityType="QuizModel.QuestionImage" />
+          <EntitySet Name="QuestionOptions" EntityType="QuizModel.QuestionOption" />
+          <EntitySet Name="QuizCategories" EntityType="QuizModel.QuizCategory" />
+          <EntitySet Name="UserQuizs" EntityType="QuizModel.UserQuiz" />
+          <AssociationSet Name="FK_AnswerImages_Answer" Association="QuizModel.FK_AnswerImages_Answer">
+            <End Role="Answer" EntitySet="Answers" />
+            <End Role="AnswerImages" EntitySet="AnswerImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswer_Answer" Association="QuizModel.FK_QuestionAnswer_Answer">
+            <End Role="Answer" EntitySet="Answers" />
+            <End Role="QuestionAnswer" EntitySet="QuestionAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOption_Answer" Association="QuizModel.FK_QuestionOption_Answer">
+            <End Role="Answer" EntitySet="Answers" />
+            <End Role="QuestionOption" EntitySet="QuestionOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswer_Question" Association="QuizModel.FK_QuestionAnswer_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionAnswer" EntitySet="QuestionAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionImage_Question" Association="QuizModel.FK_QuestionImage_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionImage" EntitySet="QuestionImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionOption_Question" Association="QuizModel.FK_QuestionOption_Question">
+            <End Role="Question" EntitySet="Questions" />
+            <End Role="QuestionOption" EntitySet="QuestionOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionAnswer_QuizCategory" Association="QuizModel.FK_QuestionAnswer_QuizCategory">
+            <End Role="QuizCategory" EntitySet="QuizCategories" />
+            <End Role="QuestionAnswer" EntitySet="QuestionAnswers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_QuizCategory" Association="QuizModel.FK_User_QuizCategory">
+            <End Role="QuizCategory" EntitySet="QuizCategories" />
+            <End Role="UserQuiz" EntitySet="UserQuizs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerDesc" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="AnswerImages" Relationship="QuizModel.FK_AnswerImages_Answer" FromRole="Answer" ToRole="AnswerImages" />
+          <NavigationProperty Name="QuestionAnswers" Relationship="QuizModel.FK_QuestionAnswer_Answer" FromRole="Answer" ToRole="QuestionAnswer" />
+          <NavigationProperty Name="QuestionOptions" Relationship="QuizModel.FK_QuestionOption_Answer" FromRole="Answer" ToRole="QuestionOption" />
+        </EntityType>
+        <EntityType Name="AnswerImage">
+          <Key>
+            <PropertyRef Name="ImageId" />
+          </Key>
+          <Property Name="ImageId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="AnswerID" Type="Int32" Nullable="false" />
+          <Property Name="ImageUrl" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Answer" Relationship="QuizModel.FK_AnswerImages_Answer" FromRole="AnswerImages" ToRole="Answer" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionDesc" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="QuestionOrder" Type="Int32" Nullable="false" />
+          <Property Name="AnswerExplanation" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="QuestionAnswers" Relationship="QuizModel.FK_QuestionAnswer_Question" FromRole="Question" ToRole="QuestionAnswer" />
+          <NavigationProperty Name="QuestionImages" Relationship="QuizModel.FK_QuestionImage_Question" FromRole="Question" ToRole="QuestionImage" />
+          <NavigationProperty Name="QuestionOptions" Relationship="QuizModel.FK_QuestionOption_Question" FromRole="Question" ToRole="QuestionOption" />
+        </EntityType>
+        <EntityType Name="QuestionAnswer">
+          <Key>
+            <PropertyRef Name="QAID" />
+          </Key>
+          <Property Name="QAID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="AnswerID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answer" Relationship="QuizModel.FK_QuestionAnswer_Answer" FromRole="QuestionAnswer" ToRole="Answer" />
+          <NavigationProperty Name="Question" Relationship="QuizModel.FK_QuestionAnswer_Question" FromRole="QuestionAnswer" ToRole="Question" />
+          <NavigationProperty Name="QuizCategory" Relationship="QuizModel.FK_QuestionAnswer_QuizCategory" FromRole="QuestionAnswer" ToRole="QuizCategory" />
+        </EntityType>
+        <EntityType Name="QuestionImage">
+          <Key>
+            <PropertyRef Name="ImageID" />
+          </Key>
+          <Property Name="ImageID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="Question" Relationship="QuizModel.FK_QuestionImage_Question" FromRole="QuestionImage" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="QuestionOption">
+          <Key>
+            <PropertyRef Name="OptionID" />
+          </Key>
+          <Property Name="OptionID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="choiceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Answer" Relationship="QuizModel.FK_QuestionOption_Answer" FromRole="QuestionOption" ToRole="Answer" />
+          <NavigationProperty Name="Question" Relationship="QuizModel.FK_QuestionOption_Question" FromRole="QuestionOption" ToRole="Question" />
+        </EntityType>
+        <EntityType Name="QuizCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="QuestionAnswers" Relationship="QuizModel.FK_QuestionAnswer_QuizCategory" FromRole="QuizCategory" ToRole="QuestionAnswer" />
+          <NavigationProperty Name="UserQuizs" Relationship="QuizModel.FK_User_QuizCategory" FromRole="QuizCategory" ToRole="UserQuiz" />
+        </EntityType>
+        <EntityType Name="UserQuiz">
+          <Key>
+            <PropertyRef Name="QuizUserID" />
+          </Key>
+          <Property Name="QuizUserID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="datetimecompleted" Type="DateTime" Precision="0" />
+          <Property Name="Score" Type="Int32" />
+          <Property Name="QuizCategoryID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="QuizCategory" Relationship="QuizModel.FK_User_QuizCategory" FromRole="UserQuiz" ToRole="QuizCategory" />
+        </EntityType>
+        <Association Name="FK_AnswerImages_Answer">
+          <End Role="Answer" Type="QuizModel.Answer" Multiplicity="1" />
+          <End Role="AnswerImages" Type="QuizModel.AnswerImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerID" />
+            </Principal>
+            <Dependent Role="AnswerImages">
+              <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswer_Answer">
+          <End Role="Answer" Type="QuizModel.Answer" Multiplicity="1" />
+          <End Role="QuestionAnswer" Type="QuizModel.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerID" />
+            </Principal>
+            <Dependent Role="QuestionAnswer">
+              <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOption_Answer">
+          <End Role="Answer" Type="QuizModel.Answer" Multiplicity="1" />
+          <End Role="QuestionOption" Type="QuizModel.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Answer">
+              <PropertyRef Name="AnswerID" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="choiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswer_Question">
+          <End Role="Question" Type="QuizModel.Question" Multiplicity="1" />
+          <End Role="QuestionAnswer" Type="QuizModel.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionAnswer">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionImage_Question">
+          <End Role="Question" Type="QuizModel.Question" Multiplicity="1" />
+          <End Role="QuestionImage" Type="QuizModel.QuestionImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionImage">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionOption_Question">
+          <End Role="Question" Type="QuizModel.Question" Multiplicity="1" />
+          <End Role="QuestionOption" Type="QuizModel.QuestionOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="QuestionOption">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionAnswer_QuizCategory">
+          <End Role="QuizCategory" Type="QuizModel.QuizCategory" Multiplicity="1" />
+          <End Role="QuestionAnswer" Type="QuizModel.QuestionAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="QuestionAnswer">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_QuizCategory">
+          <End Role="QuizCategory" Type="QuizModel.QuizCategory" Multiplicity="1" />
+          <End Role="UserQuiz" Type="QuizModel.UserQuiz" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuizCategory">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="UserQuiz">
+              <PropertyRef Name="QuizCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuizModelStoreContainer" CdmEntityContainer="QuizEntities">
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="QuizModel.Answer">
+              <MappingFragment StoreEntitySet="Answer">
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="AnswerDesc" ColumnName="AnswerDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerImages">
+            <EntityTypeMapping TypeName="QuizModel.AnswerImage">
+              <MappingFragment StoreEntitySet="AnswerImages">
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="QuizModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="QuestionDesc" ColumnName="QuestionDesc" />
+                <ScalarProperty Name="QuestionOrder" ColumnName="QuestionOrder" />
+                <ScalarProperty Name="AnswerExplanation" ColumnName="AnswerExplanation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionAnswers">
+            <EntityTypeMapping TypeName="QuizModel.QuestionAnswer">
+              <MappingFragment StoreEntitySet="QuestionAnswer">
+                <ScalarProperty Name="QAID" ColumnName="QAID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionImages">
+            <EntityTypeMapping TypeName="QuizModel.QuestionImage">
+              <MappingFragment StoreEntitySet="QuestionImage">
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionOptions">
+            <EntityTypeMapping TypeName="QuizModel.QuestionOption">
+              <MappingFragment StoreEntitySet="QuestionOption">
+                <ScalarProperty Name="OptionID" ColumnName="OptionID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="choiceID" ColumnName="choiceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuizCategories">
+            <EntityTypeMapping TypeName="QuizModel.QuizCategory">
+              <MappingFragment StoreEntitySet="QuizCategory">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserQuizs">
+            <EntityTypeMapping TypeName="QuizModel.UserQuiz">
+              <MappingFragment StoreEntitySet="UserQuiz">
+                <ScalarProperty Name="QuizUserID" ColumnName="QuizUserID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="datetimecompleted" ColumnName="datetimecompleted" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="QuizCategoryID" ColumnName="QuizCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

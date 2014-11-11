@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b8a6c078b3b949508dd58266d27ab89f" Name="Diagram1">
+        <EntityTypeShape EntityType="QuizModel.Answer" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.AnswerImage" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.Question" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.QuestionAnswer" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.QuestionImage" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.QuestionOption" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.QuizCategory" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuizModel.UserQuiz" Width="1.5" PointX="3" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="QuizModel.FK_AnswerImages_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizModel.FK_QuestionAnswer_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizModel.FK_QuestionOption_Answer" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizModel.FK_QuestionAnswer_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizModel.FK_QuestionImage_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizModel.FK_QuestionOption_Question" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizModel.FK_QuestionAnswer_QuizCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="QuizModel.FK_User_QuizCategory" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
