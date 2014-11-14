@@ -145,6 +145,67 @@ namespace QuizBee.Data
             }
         }
 
+        public List<Answer> GetAllanswers()
+        {
+            try
+            {
+                List<Answer> toreturn = new List<Answer>();
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    toreturn = (from ans in qz.Answers
+                                select ans).ToList();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Answer Getanswer(int id)
+        {
+            try
+            {
+                Answer toreturn = new Answer();
+
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    toreturn = (from ans in qz.Answers
+                                where ans.AnswerID==id
+                                select ans).FirstOrDefault();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Answer Getanswer(string answerdesc)
+        {
+            try
+            {
+                Answer toreturn = new Answer();
+
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    toreturn = (from ans in qz.Answers
+                                where ans.AnswerDesc == answerdesc
+                                select ans).FirstOrDefault();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public int AddAnswer(string answer)
         {
             try
@@ -206,6 +267,58 @@ namespace QuizBee.Data
                     }
 
                     toreturn= qz.SaveChanges();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int DeleteAnswer(int id)
+        {
+            try
+            {
+                int toreturn = 0;
+                using (QuizEntities qz = new QuizEntities())
+                {
+                    var result = (from ans in qz.Answers
+                                  where ans.AnswerID == id
+                                  select ans).FirstOrDefault();
+                    if (result != null)
+                    {
+                        qz.Answers.Remove(result);
+                    }
+
+                    toreturn = qz.SaveChanges();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool UpdateAnswer(Answer ansupdate)
+        {
+            try
+            {
+                bool toreturn = false;
+                using (QuizEntities qz = new QuizEntities())
+                {
+                    var result = (from ans in qz.Answers
+                                  where ans.AnswerID == ansupdate.AnswerID
+                                  select ans).FirstOrDefault();
+                    if (result != null)
+                    {
+                        result.AnswerDesc = ansupdate.AnswerDesc;
+                    }
+
+                    qz.SaveChanges();
+                    
+                    toreturn= true;
                 }
                 return toreturn;
             }

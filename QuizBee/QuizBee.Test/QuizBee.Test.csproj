@@ -66,9 +66,15 @@
       <Project>{125a6ff8-3b70-4224-974f-45c43216e3f0}</Project>
       <Name>QuizBee.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QuizBee\QuizBee.csproj">
+      <Project>{bc3ad253-4f7c-4f69-a493-529b817a8ea1}</Project>
+      <Name>QuizBee</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

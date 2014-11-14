@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizBee.Data", "QuizBee.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizBee.Test", "QuizBee.Test\QuizBee.Test.csproj", "{A17A05B3-DB9B-4612-B7BE-EC6269C8E71B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizBee", "QuizBee\QuizBee.csproj", "{BC3AD253-4F7C-4F69-A493-529B817A8EA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{A17A05B3-DB9B-4612-B7BE-EC6269C8E71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A17A05B3-DB9B-4612-B7BE-EC6269C8E71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A17A05B3-DB9B-4612-B7BE-EC6269C8E71B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC3AD253-4F7C-4F69-A493-529B817A8EA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC3AD253-4F7C-4F69-A493-529B817A8EA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC3AD253-4F7C-4F69-A493-529B817A8EA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC3AD253-4F7C-4F69-A493-529B817A8EA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
