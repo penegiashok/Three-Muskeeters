@@ -15,6 +15,5 @@ C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\Quiz
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee.Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee.Data\bin\Debug\EntityFramework.xml
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee.Data\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee.Data\obj\Debug\QuizBee.Data.csprojResolveAssemblyReference.cache
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee.Data\obj\Debug\QuizBee.Data.dll
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee.Data\obj\Debug\QuizBee.Data.pdb

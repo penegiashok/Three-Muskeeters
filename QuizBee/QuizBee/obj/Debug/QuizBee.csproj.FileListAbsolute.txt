@@ -160,3 +160,5 @@ C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\Quiz
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee\obj\Debug\QuizBee.csprojResolveAssemblyReference.cache
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee\obj\Debug\QuizBee.dll
 C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee\obj\Debug\QuizBee.pdb
+C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee\bin\EntityFramework.SqlServer.dll
+C:\Users\Ashok\Documents\Visual Studio 2012\GitHub\Three-Muskeeters\QuizBee\QuizBee\bin\EntityFramework.SqlServer.xml

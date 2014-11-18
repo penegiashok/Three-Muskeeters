@@ -16,7 +16,7 @@ namespace QuizBee.Data
     public partial class QuizEntities : DbContext
     {
         public QuizEntities()
-            : base("QuizEntities")
+            : base("name=QuizEntities")
         {
         }
     

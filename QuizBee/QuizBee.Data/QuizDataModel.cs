@@ -9,6 +9,157 @@ namespace QuizBee.Data
 {
     public class QuizDataModel
     {
+        public List<QuizCategory> GetAllCategories()
+        {
+            List<QuizCategory> toreturn = new List<QuizCategory>();
+            using (QuizEntities qz = new QuizEntities())
+            {
+                toreturn = (from ai in qz.QuizCategories select ai).ToList();
+            }
+            return toreturn;
+        }
+
+        public QuizCategory GetCategory(int id)
+        {
+            try
+            {
+                QuizCategory toreturn = new QuizCategory();
+
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    toreturn = (from cat in qz.QuizCategories
+                                where cat.CategoryID == id
+                                select cat).FirstOrDefault();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public QuizCategory GetCategory(string categoryname)
+        {
+            try
+            {
+                QuizCategory toreturn = new QuizCategory();
+
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    toreturn = (from cat in qz.QuizCategories
+                                where cat.Name == categoryname
+                                select cat).FirstOrDefault();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool IsCategoryExists(string categoryname)
+        {
+            bool toreturn = false;
+            try
+            {
+                using (QuizEntities qz = new QuizEntities())
+                {
+                    var result = (from cat in qz.QuizCategories
+                                  where cat.Name == categoryname
+                                  select cat).FirstOrDefault();
+                    if (result != null && !string.IsNullOrEmpty(result.Name.ToString()))
+                    {
+                        toreturn = true;
+                    }
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int AddCategory(string categoryname, string categorydesc)
+        {
+            try
+            {
+                int result = 0;
+                using (QuizEntities Qz = new QuizEntities())
+                {
+                    QuizCategory newcat = new QuizCategory();
+
+                    newcat.Name = categoryname;
+                    newcat.Description = categorydesc;
+
+                    Qz.QuizCategories.Add(newcat);
+
+                    result = Qz.SaveChanges();
+                }
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public int DeleteCategory(int categoryid)
+        {
+            try
+            {
+                int toreturn = 0;
+                using (QuizEntities Qz = new QuizEntities())
+                {
+                    var deleteCat = (from cat in Qz.QuizCategories
+                                     where cat.CategoryID == categoryid
+                                     select cat).FirstOrDefault();
+                    if (deleteCat != null)
+                    {
+                        Qz.QuizCategories.Remove(deleteCat);
+                    }
+                    toreturn = Qz.SaveChanges();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public bool UpdateCategory(QuizCategory cat)
+        {
+            try
+            {
+                bool toreturn = false;
+                using (QuizEntities qz = new QuizEntities())
+                {
+                    var result = (from res in qz.QuizCategories
+                                  where res.CategoryID == cat.CategoryID
+                                  select res).FirstOrDefault();
+                    if (result != null)
+                    {
+                        result.Name = cat.Name;
+                        result.Description = cat.Description;
+                    }
+
+                    qz.SaveChanges();
+
+                    toreturn = true;
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public List<string> getlistofcategories()
         {
             try
@@ -540,52 +691,5 @@ namespace QuizBee.Data
             }
         }
 
-        public int AddCategory(string categoryname, string categorydesc)
-        {
-            try
-            {
-                int result = 0;
-                using (QuizEntities Qz = new QuizEntities())
-                {
-                    QuizCategory newcat = new QuizCategory();
-
-                    newcat.Name = categoryname;
-                    newcat.Description = categorydesc;
-
-                    Qz.QuizCategories.Add(newcat);
-
-                    result= Qz.SaveChanges();
-                }
-                return result;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
-
-        public int DeleteCategory(int categoryid)
-        {
-            try
-            {
-                int toreturn = 0;
-                using (QuizEntities Qz = new QuizEntities())
-                {
-                    var deleteCat = (from cat in Qz.QuizCategories
-                                     where cat.CategoryID == categoryid
-                                     select cat).FirstOrDefault();
-                    if (deleteCat != null)
-                    {
-                        Qz.QuizCategories.Remove(deleteCat);
-                    }
-                    toreturn=Qz.SaveChanges();
-                }
-                return toreturn;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-        }
     }
 }

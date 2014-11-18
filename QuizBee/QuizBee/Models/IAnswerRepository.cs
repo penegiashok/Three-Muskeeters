@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace QuizBee.Models
 {
-    interface IAnswerRepository
+    public interface IAnswerRepository
     {
         IEnumerable<QuizAnswer> GetAll();
         QuizAnswer Get(int id);
