@@ -61,6 +61,30 @@ namespace QuizBee.Data
             }
         }
 
+        public QuizCategory GetCategoryforaQuestion(int questionid)
+        {
+            try
+            {
+                QuizCategory toreturn = new QuizCategory();
+                QuestionAnswer qnaresult = new QuestionAnswer();
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    qnaresult = (from qna in qz.QuestionAnswers
+                                where qna.QuestionID == questionid
+                                select qna).FirstOrDefault();
+                    toreturn = (from cat in qz.QuizCategories
+                                where cat.CategoryID == qnaresult.CategoryID
+                                select cat).FirstOrDefault();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public bool IsCategoryExists(string categoryname)
         {
             bool toreturn = false;
@@ -619,6 +643,76 @@ namespace QuizBee.Data
             }
         }
 
+        public List<Question> GetAllQuestions()
+        {
+            try
+            {
+                List<Question> toreturn = new List<Question>();
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    toreturn = (from ans in qz.Questions
+                                select ans).ToList();
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public Question GetQuestion(int id)
+        {
+            try
+            {
+                Question toreturn = new Question();
+
+                using (QuizEntities qz = new QuizEntities())
+                {
+
+                    toreturn = (from qn in qz.Questions
+                                where qn.QuestionID == id
+                                select qn).FirstOrDefault();
+                    var qnas = (from qa in qz.QuestionAnswers
+                                where qa.QuestionID == id
+                                select qa).ToList();
+                    foreach (QuestionAnswer QA in qnas)
+                    {
+                        var crtans = (from ans in qz.Answers
+                                      where ans.AnswerID == QA.AnswerID
+                                      select ans).FirstOrDefault();
+                        QA.Answer.AnswerID = crtans.AnswerID;
+                        QA.Answer.AnswerDesc = crtans.AnswerDesc;
+                        toreturn.QuestionAnswers.Add(QA);
+                    }
+
+                    var qoptns = (from opts in qz.QuestionOptions
+                                  where opts.QuestionID ==id
+                                  select opts).ToList();
+
+                    List<QuestionOption> options = new List<QuestionOption>();
+
+                    toreturn.QuestionOptions = options;
+                    foreach (QuestionOption opt in qoptns)
+                    {
+                        toreturn.QuestionOptions.Add(opt);
+
+                        var optn = (from ans in qz.Answers
+                                    where ans.AnswerID == opt.choiceID
+                                    select ans).FirstOrDefault();
+                        opt.Answer.AnswerID = optn.AnswerID;
+                        opt.Answer.AnswerDesc = optn.AnswerDesc;
+                    }
+                }
+                return toreturn;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public List<Question> GetAllQuestionsforaGivenCategory(string categoryname)
         {
             List<Question> toreturn = new List<Question>();
@@ -656,6 +750,41 @@ namespace QuizBee.Data
                                      join cat in qz.QuizCategories on questionanswer.CategoryID equals cat.CategoryID
                                      where cat.CategoryID ==categoryid
                                      select question).ToList();
+
+                    foreach (Question qn in questions)
+                    {
+                        var qnas = (from qa in qz.QuestionAnswers
+                                    where qa.QuestionID == qn.QuestionID
+                                    select qa).ToList();
+                        foreach (QuestionAnswer QA in qnas)
+                        {
+                            var crtans = (from ans in qz.Answers
+                                          where ans.AnswerID == QA.AnswerID
+                                          select ans).FirstOrDefault();
+                            QA.Answer.AnswerID=crtans.AnswerID;
+                            QA.Answer.AnswerDesc=crtans.AnswerDesc;
+                            qn.QuestionAnswers.Add(QA);
+                        }
+
+                        var qoptns = (from opts in qz.QuestionOptions
+                                      where opts.QuestionID == qn.QuestionID
+                                      select opts).ToList();
+
+                        List<QuestionOption> options = new List<QuestionOption>();
+
+                        qn.QuestionOptions = options;
+                        foreach (QuestionOption opt in qoptns)
+                        {
+                            qn.QuestionOptions.Add(opt);
+
+                            var optn = (from ans in qz.Answers
+                                          where ans.AnswerID == opt.choiceID
+                                          select ans).FirstOrDefault();
+                            opt.Answer.AnswerID = optn.AnswerID;
+                            opt.Answer.AnswerDesc = optn.AnswerDesc;
+                        }
+                    }
+                    
 
                     toreturn = questions;
                 }

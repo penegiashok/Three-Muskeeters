@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizAnswerController.cs" />
     <Compile Include="Controllers\QuizCategoryController.cs" />
+    <Compile Include="Controllers\QuizQuestionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -198,9 +199,11 @@
     <Compile Include="Models\CategoryRepository.cs" />
     <Compile Include="Models\IAnswerRepository.cs" />
     <Compile Include="Models\ICategoryRepository.cs" />
+    <Compile Include="Models\IQuizCategoryQuestionRepository.cs" />
     <Compile Include="Models\QuizAnswer.cs" />
-    <Compile Include="Models\QuizCategory.cs" />
+    <Compile Include="Models\QuizzCategory.cs" />
     <Compile Include="Models\QuizQuestion.cs" />
+    <Compile Include="Models\QuizCategoryQuestionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

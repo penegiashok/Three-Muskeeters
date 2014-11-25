@@ -903,13 +903,13 @@ SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc=
 UNION ALL
 SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Pennsylvania'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Philadelphia')
 UNION ALL
-SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Pennsylvania'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Providence')
+SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Rhode Island'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Providence')
 UNION ALL
-SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Pennsylvania'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Cranston')
+SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Rhode Island'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Cranston')
 UNION ALL
-SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Pennsylvania'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Kingston')
+SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Rhode Island'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Kingston')
 UNION ALL
-SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Pennsylvania'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Warwick')
+SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of Rhode Island'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Warwick')
 UNION ALL
 SELECT   (Select QuestionID from [MytestDB].[dbo].[Question] Where QuestionDesc='What is the capital of South Carolina'),(Select AnswerID   from [MytestDB].[dbo].[Answer]   Where AnswerDesc='Charleston')
 UNION ALL
